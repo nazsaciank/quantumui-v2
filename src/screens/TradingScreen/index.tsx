@@ -7,7 +7,7 @@ import { Decimal } from '../../components/Decimal';
 import { GridItem } from '../../components/GridItem';
 import {
     MarketDepthsComponent,
-    MarketsComponent,
+    //MarketsComponent,
     OpenOrdersComponent,
     OrderBook,
     OrderComponent,
@@ -109,10 +109,12 @@ const TradingWrapper = props => {
                 i: 6,
                 render: () => <RecentTrades/>,
             },
+            /*
             {
                 i: 7,
                 render: () => <MarketsComponent/>,
             },
+            */
         ];
 
         // @ts-ignore
