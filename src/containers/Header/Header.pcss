@@ -7,7 +7,12 @@ header {
   margin: 0 auto;
 
   .pg-logo__img {
-    height: calc(var(--gap) * 3.666);
+    width: 200px;
+    height: 100%;
+
+    & > g{
+      transform: translate(-9px, 10px);
+    }
   }
 
   &__market-selector-toggle {
