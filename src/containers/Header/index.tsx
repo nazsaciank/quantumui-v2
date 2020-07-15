@@ -5,6 +5,7 @@ import { connect, MapDispatchToPropsFunction } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { showLanding } from '../../api';
 import { LogoNameIcon } from '../../assets/images/logo';
+
 import {
     Market,
     RootState,
@@ -59,18 +60,23 @@ class Head extends React.Component<Props> {
                             <span className="pg-sidebar__toggler-item"/>
                             <span className="pg-sidebar__toggler-item"/>
                         </div>
-                        <div onClick={e => this.redirectToLanding()} className="pg-header__logo">
-                            <div className="pg-logo">
-                                <LogoNameIcon className="pg-logo__img" />
+                        <div className="pg-header__info">
+                            <div onClick={e => this.redirectToLanding()} className="pg-header__logo">
+                                <div className="pg-logo">
+                                    <LogoNameIcon className="pg-logo__img" />
+                                </div>
                             </div>
+                            {this.renderMarketToggler()}
+                            {this.renderMarketToolbar()}
                         </div>
-                        {this.renderMarketToggler()}
+                        <div className="pg-header__location">
+                            {this.renderMarketToggler()}
+                        </div>
                         <div className="pg-header__location">
                             {mobileWallet ? <span>{mobileWallet}</span> : <span>{window.location.pathname.split('/')[1]}</span>}
                         </div>
                         {this.renderMobileWalletNav()}
                         <div className="pg-header__navbar">
-                            {this.renderMarketToolbar()}
                             <NavBar onLinkChange={this.closeMenu}/>
                         </div>
                     </div>

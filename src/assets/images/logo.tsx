@@ -61,7 +61,7 @@ export const LogoIcon: React.FC<LogoIconProps> = (props: LogoIconProps) => (
 
 export const LogoNameIcon: React.FC<LogoIconProps> = (props: LogoIconProps) => (
     <svg width="361.36" height="63.64" viewBox="0 0 361.36 63.64" xmlns="http://www.w3.org/2000/svg" className={props.className}>
-        <g> {/* insert style="transform: translate(9px, 10px)" */}
+        <g transform="translate(-9, 10)">
             <defs id="SvgjsDefs6097">
                 <linearGradient id="SvgjsLinearGradient6104">
                     <stop id="SvgjsStop6105" stop-color="#2d388a" offset="0"></stop>
