@@ -38,8 +38,8 @@ export const colors = {
             moon: 'var(--primary-text-color)',
         },
         orderBook: {
-            asks: 'var(--asks-level-4)',
-            bids: 'var(--bids-level-4)',
+            asks: 'var(--asks-level-2)',
+            bids: 'var(--bids-level-2)',
         },
         depth: {
             fillAreaAsk: '#fa5252',
@@ -63,8 +63,8 @@ export const colors = {
             moon: 'var(--icons)',
         },
         orderBook: {
-            asks: 'var(--asks-level-4)',
-            bids: 'var(--bids-level-4)',
+            asks: 'var(--asks-level-2)',
+            bids: 'var(--bids-level-2)',
         },
         depth: {
             fillAreaAsk: 'var(--rgb-asks)',

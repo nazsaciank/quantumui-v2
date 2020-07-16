@@ -69,7 +69,6 @@
       &__switcher {
         align-items: center;
         display: flex;
-        height: calc(var(--gap) * 3.2);
         justify-content: flex-start;
         margin-top: calc(var(--gap) * 0.34);
         user-select: none;
@@ -91,10 +90,11 @@
             height: calc(var(--gap) * 3.84);
             justify-content: center;
             width: calc(var(--gap) * 3.84);
+            border-bottom: 1px solid;
+            border-top: 1px solid;
 
             &--active {
               background: var(--header-switcher-background-color-theme-active);
-              height: 21px;
             }
           }
         }
@@ -276,7 +276,6 @@
 
     &__header {
       &-settings {
-        margin: 0 20px 20px;
 
         .btn-group {
           display: none;
