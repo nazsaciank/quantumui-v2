@@ -5,9 +5,13 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { incrementalOrderBook } from '../../api';
 import { Decimal } from '../../components/Decimal';
 import { GridItem } from '../../components/GridItem';
+import { TabPanel } from '../../components';
+
+import { ChartsIcon, SearchIcon, UserIcon, OrderIcon } from '../../assets/images/tradingIcon';
+
 import {
     MarketDepthsComponent,
-    //MarketsComponent,
+    MarketsComponent,
     OpenOrdersComponent,
     OrderBook,
     OrderComponent,
@@ -76,6 +80,8 @@ interface DispatchProps {
 interface StateProps {
     orderComponentResized: number;
     orderBookComponentResized: number;
+    index: number,
+    windowWidth: number,
 }
 
 const ReactGridLayout = WidthProvider(Responsive);
@@ -145,6 +151,8 @@ class Trading extends React.Component<Props, StateProps> {
     public readonly state = {
         orderComponentResized: 5,
         orderBookComponentResized: 5,
+        index: 0,
+        windowWidth: window.innerWidth,
     };
 
     public componentDidMount() {
@@ -166,6 +174,8 @@ class Trading extends React.Component<Props, StateProps> {
         if (userLoggedIn && !withAuth) {
             this.props.rangerConnect({ withAuth: userLoggedIn });
         }
+
+        window.addEventListener('resize', this.handleWindowResize);
     }
 
     public componentWillUnmount() {
@@ -205,26 +215,119 @@ class Trading extends React.Component<Props, StateProps> {
     }
 
     public render() {
-        const { orderComponentResized, orderBookComponentResized } = this.state;
+        const { orderComponentResized, orderBookComponentResized, windowWidth } = this.state;
         const { rgl } = this.props;
-
         return (
             <div className={'pg-trading-screen'}>
                 <div className={'pg-trading-wrap'}>
                     <ToolBar/>
-                    <div data-react-toolbox="grid" className={'cr-grid'}>
-                        <div className="cr-grid__grid-wrapper">
-                            <TradingWrapper
-                                layouts={rgl.layouts}
-                                orderComponentResized={orderComponentResized}
-                                orderBookComponentResized={orderBookComponentResized}
-                                handleResize={this.handleResize}
-                            />
-                        </div>
-                    </div>
+                    {
+                        windowWidth < 996 ? (
+                            <div className="cr-tab-trading">
+                                <TabPanel
+                                    fixed={true}
+                                    panels={this.getPanels()}
+                                    onTabChange={this.handleChangeTab}
+                                    currentTabIndex={this.state.index}
+                                />
+                            </div>
+                        ) : (
+                            <div className={'cr-grid'} data-react-toolbox="grid">
+                                <div className="cr-grid__grid-wrapper">
+                                    <TradingWrapper
+                                        layouts={rgl.layouts}
+                                        orderComponentResized={orderComponentResized}
+                                        orderBookComponentResized={orderBookComponentResized}
+                                        handleResize={this.handleResize}
+                                    />
+                                </div>
+                            </div>
+                        )
+                    }
+
                 </div>
             </div>
         );
+    }
+    private getPanels = () => {
+
+        return [
+            {
+                content: (
+                    <div className="cr-tab-items">
+                        <div className="cr-tab-item-content h-content h-content-tradingChart">
+                            <TradingChart />
+                        </div>
+                        <div className="cr-tab-item-content h-content h-content-marketDepths">
+                            <MarketDepthsComponent />
+                        </div>
+                    </div>
+                ),
+                label: 'Charts',
+                icon: (
+                    <ChartsIcon/>
+                ),
+            },
+            {
+                content: (
+                    <div className="cr-tab-items">
+                        <div className="cr-tab-item-content h-content h-content-order">
+                            <OrderComponent />
+                        </div>
+                    </div>
+                ),
+                label: 'Shop',
+                icon: (
+                    <OrderIcon />
+                ),
+            },
+            {
+                content: (
+                    <div className="cr-tab-items">
+                        <div className="cr-tab-item-content h-content h-content-recentTrades">
+                            <RecentTrades />
+                        </div>
+                        <div className="cr-tab-item-content h-content h-content-orderBook">
+                            <OrderBook />
+                        </div>
+                    </div>
+                ),
+                label: 'Orderbook',
+                icon: (
+                    <UserIcon />
+                ),
+            },
+            {
+                content: (
+                    <div className="cr-tab-items">
+                        <div className="cr-tab-item-content h-content h-content-openOrders">
+                            <OpenOrdersComponent />
+                        </div>
+                        <div className="cr-tab-item-content h-content h-content-markets">
+                            <MarketsComponent />
+                        </div>
+                    </div>
+                ),
+                label: 'MarketComponent',
+                icon: (
+                    <SearchIcon />
+                ),
+            },
+        ] 
+    }
+    private handleWindowResize = () => {
+        this.setState({
+            windowWidth: window.innerWidth
+        })
+    }
+    private handleChangeTab = (index: number, label?: string) => {
+        if (this.props.handleSendType && label) {
+          this.props.handleSendType(index, label);
+        }
+
+        this.setState({
+            index: index,
+        });
     }
 
     private setMarketFromUrlIfExists = (markets: Market[]): void => {

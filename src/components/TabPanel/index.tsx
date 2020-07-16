@@ -15,6 +15,7 @@ export interface Tab {
     disabled?: boolean;
     hidden?: boolean;
     label: string;
+    icon?: React.ReactNode;
 }
 
 export interface TabPanelProps {
@@ -92,7 +93,7 @@ export class TabPanel extends React.Component<TabPanelProps> {
     }
 
     private renderTabPanel = (tab: Tab, index: number) => {
-        const { disabled, hidden, label } = tab;
+        const { disabled, hidden, label, icon } = tab;
         const { currentTabIndex } = this.props;
 
         const active = currentTabIndex === index;
@@ -110,7 +111,7 @@ export class TabPanel extends React.Component<TabPanelProps> {
                 role="tab"
                 tabIndex={index}
             >
-                {label}
+                {icon ? icon : label }
                 {active && <span className="cr-tab__pointer" />}
             </div>
         );
