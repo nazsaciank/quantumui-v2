@@ -28,11 +28,6 @@ import {
 import { LogoutIcon } from '../../assets/images/sidebar/LogoutIcon';
 import { SidebarIcons } from '../../assets/images/sidebar/SidebarIcons';
 
-
-//import { Moon } from '../../assets/images/Moon';
-//import { Sun } from '../../assets/images/Sun';
-//import { colors } from '../../constants';
-
 export interface ReduxProps {
     colorTheme: string;
     currentMarket: Market | undefined;
@@ -66,23 +61,9 @@ class NavBarComponent extends React.Component<Props> {
         return (
             <div className={'pg-navbar'}>
                 <div className="pg-navbar-wrapper-nav">
-                {pgRoutes(isLoggedIn, isLight).map(this.renderNavItems(address))}
-                {this.renderLogout()}
-            </div>
-                {
-                    /*
-                        <div className="pg-navbar__header-settings">
-                            <div className="pg-navbar__header-settings__switcher">
-                                <div
-                                    className="pg-navbar__header-settings__switcher__items"
-                                    onClick={e => this.handleChangeCurrentStyleMode(colorTheme === 'light' ? 'basic' : 'light')}
-                                >
-                                    {this.getLightDarkMode()}
-                                </div>
-                            </div>
-                        </div>
-                    */
-                }
+                    {pgRoutes(isLoggedIn, isLight).map(this.renderNavItems(address))}
+                    {this.renderLogout()}
+                </div>
             </div>
         );
     }
@@ -123,40 +104,6 @@ class NavBarComponent extends React.Component<Props> {
             </div>
         );
     }
-    /*
-    private getLightDarkMode = () => {
-        const { colorTheme } = this.props;
-
-        if (colorTheme === 'basic') {
-            return (
-                <React.Fragment>
-                    <div className="switcher-item">
-                        <Sun fillColor={colors.light.navbar.sun}/>
-                    </div>
-                    <div className="switcher-item switcher-item--active">
-                        <Moon fillColor={colors.light.navbar.moon}/>
-                    </div>
-                </React.Fragment>
-            );
-        }
-
-        return (
-            <React.Fragment>
-                <div className="switcher-item switcher-item--active">
-                    <Sun fillColor={colors.basic.navbar.sun}/>
-                </div>
-                <div className="switcher-item">
-                    <Moon fillColor={colors.basic.navbar.moon}/>
-                </div>
-            </React.Fragment>
-        );
-    };
-   
-
-    private handleChangeCurrentStyleMode = (value: string) => {
-        this.props.changeColorTheme(value);
-    };
-     */
 }
 
 const mapStateToProps: MapStateToProps<ReduxProps, {}, RootState> =
