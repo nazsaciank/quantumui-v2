@@ -1,12 +1,15 @@
 import classnames from 'classnames';
 import * as React from 'react';
 import { Button } from 'react-bootstrap';
+
 import { cleanPositiveFloatInput, precisionRegExp } from '../../helpers';
 import { Decimal } from '../Decimal';
-import { DropdownComponent } from '../Dropdown';
+//import { DropdownComponent } from '../Dropdown';
 import { OrderProps } from '../Order';
 import { OrderInput } from '../OrderInput';
 import { PercentageButton } from '../PercentageButton';
+
+import { Link } from 'react-router-dom';
 
 type OnSubmitCallback = (order: OrderProps) => void;
 type DropdownElem = number | string | React.ReactNode;
@@ -104,6 +107,9 @@ export interface OrderFormProps {
     amount: string;
     handleAmountChange: (amount: string, type: FormType) => void;
     handleChangeAmountByButton: (value: number, orderType: string | React.ReactNode, price: string, type: string) => void;
+
+    userLoggedIn?: boolean;
+    orderSelected: string;
 }
 
 interface OrderFormState {
@@ -122,7 +128,7 @@ export class OrderForm extends React.PureComponent<OrderFormProps, OrderFormStat
     constructor(props: OrderFormProps) {
         super(props);
         this.state = {
-            orderType: 'Limit',
+            orderType: this.props.orderSelected,
             price: '',
             priceMarket: this.props.priceMarket,
             priceFocused: false,
@@ -143,17 +149,20 @@ export class OrderForm extends React.PureComponent<OrderFormProps, OrderFormStat
                 priceMarket: next.priceMarket,
             });
         }
+        if (this.state.orderType !== next.orderSelected){
+            this.setState({
+                orderType: this.props.orderSelected
+            })
+        }
     }
 
     public render() {
         const {
             type,
-            orderTypes,
             className,
             from,
             to,
             available,
-            orderTypeText,
             priceText,
             amountText,
             totalText,
@@ -163,6 +172,7 @@ export class OrderForm extends React.PureComponent<OrderFormProps, OrderFormStat
             currentMarketBidPrecision,
             totalPrice,
             amount,
+            userLoggedIn
         } = this.props;
         const {
             orderType,
@@ -183,10 +193,7 @@ export class OrderForm extends React.PureComponent<OrderFormProps, OrderFormStat
 
         return (
             <div className={classnames('cr-order-form', className)} onKeyPress={this.handleEnterPress}>
-                <div className="cr-order-item">
-                    {orderTypeText ? <div className="cr-order-item__dropdown__label">{orderTypeText}</div> : null}
-                    <DropdownComponent list={orderTypes} onSelect={this.handleOrderTypeChange} placeholder=""/>
-                </div>
+
                 {orderType === 'Limit' ? (
                     <div className="cr-order-item">
                         <OrderInput
@@ -277,27 +284,29 @@ export class OrderForm extends React.PureComponent<OrderFormProps, OrderFormStat
                     </div>
                 </div>
                 <div className="cr-order-item">
-                    <Button
-                        block={true}
-                        className="btn-block mr-1 mt-1 btn-lg"
-                        disabled={this.checkButtonIsDisabled()}
-                        onClick={this.handleSubmit}
-                        size="lg"
-                        variant={type === 'buy' ? 'success' : 'danger'}
-                    >
-                        {submitButtonText || type}
-                    </Button>
+                {
+                        userLoggedIn ? (
+                            <Button
+                                block={true}
+                                className="btn-block mr-1 mt-1 btn-lg"
+                                disabled={this.checkButtonIsDisabled()}
+                                onClick={this.handleSubmit}
+                                size="lg"
+                                variant={type === 'buy' ? 'success' : 'danger'}
+                            >
+                                {`${submitButtonText} ${to.toUpperCase()}` || type}
+                            </Button>
+                        ) : (
+                            <Link to="/signin" className="btn btn-primary btn-block btn-lg">
+                                {submitButtonText || 'Sign In or Sign Up'}
+                            </Link>
+                        )
+                    }
                 </div>
             </div>
         );
     }
 
-    private handleOrderTypeChange = (index: number) => {
-        const { orderTypesIndex } = this.props;
-        this.setState({
-            orderType: orderTypesIndex[index],
-        });
-    };
 
     private handleFieldFocus = (field: string | undefined) => {
         switch (field) {

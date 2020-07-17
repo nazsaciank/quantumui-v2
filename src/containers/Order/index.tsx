@@ -71,6 +71,8 @@ class OrderInsert extends React.PureComponent<Props, StoreProps> {
     private getOrderTypes = [
         this.props.intl.formatMessage({ id: 'page.body.trade.header.newOrder.content.orderType.limit' }),
         this.props.intl.formatMessage({ id: 'page.body.trade.header.newOrder.content.orderType.market' }),
+        this.props.intl.formatMessage({ id: 'page.body.trade.header.newOrder.content.orderType.stopLimit' }),
+        this.props.intl.formatMessage({ id: 'page.body.trade.header.newOrder.content.orderType.oco' }),
     ];
 
     private orderRef;
@@ -114,11 +116,12 @@ class OrderInsert extends React.PureComponent<Props, StoreProps> {
             labelSecond: this.props.intl.formatMessage({ id: 'page.body.trade.header.newOrder.content.tabs.sell' }),
             submitBuyButtonText: this.props.intl.formatMessage({ id: 'page.body.trade.header.newOrder.content.tabs.buy' }),
             submitSellButtonText: this.props.intl.formatMessage({ id: 'page.body.trade.header.newOrder.content.tabs.sell' }),
+            submitUserLogginText: this.props.intl.formatMessage({ id: 'page.body.trade.header.newOrder.content.tabs.SignInOrSignUp' })
         };
     };
 
     public render() {
-        const { executeLoading, marketTickers, currentMarket, wallets, asks, bids } = this.props;
+        const { executeLoading, marketTickers, currentMarket, wallets, asks, bids, userLoggedIn } = this.props;
         if (!currentMarket) {
             return null;
         }
@@ -158,6 +161,7 @@ class OrderInsert extends React.PureComponent<Props, StoreProps> {
                     width={this.state.width}
                     listenInputPrice={this.listenInputPrice}
                     {...translations}
+                    userLoggedIn={userLoggedIn}
                 />
                 {executeLoading && <div className="pg-order--loading"><Spinner animation="border" variant="primary" /></div>}
             </div>

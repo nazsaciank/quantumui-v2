@@ -105,13 +105,21 @@ export interface OrderComponentProps {
      * @default 'Buy'
      * Text for Buy tab label.
      */
+    submitUserLogginText?: string;
+    /**
+     * @default 'Sign in or Sign up'
+     * Text for UserLoggin tab label.
+     */
     labelFirst?: string;
     /**
      * @default 'Sell'
      * Text for Sell tab label.
      */
     labelSecond?: string;
-    orderTypes?: DropdownElem[];
+    /**
+     *
+    */
+    orderTypes: DropdownElem[];
     orderTypesIndex?: DropdownElem[];
     /**
      *
@@ -129,16 +137,22 @@ export interface OrderComponentProps {
      * start handling change price
      */
     listenInputPrice?: () => void;
+
+    userLoggedIn?: boolean;
 }
 interface State {
     index: number;
-    amountSell: string;
-    amountBuy: string;
+    amountSell: string;//
+    amountBuy: string;//
+    indexOrderType: number;
+    orderSelected: string;
 }
 
 const defaultOrderTypes: DropdownElem[] = [
     'Limit',
     'Market',
+    'Stop-Limit',
+    'OCO'
 ];
 
 const splitBorder = 449;
@@ -149,46 +163,68 @@ export class Order extends React.Component<OrderComponentProps, State> {
         index: 0,
         amountSell: '',
         amountBuy: '',
+        indexOrderType: 0,
+        orderSelected: 'Limit'
     };
 
     public render() {
         const {
             width = defaultWidth,
+            orderTypes
         } = this.props;
-
-        if (width < splitBorder) {
-            return (
-                <div className="cr-order">
-                    <TabPanel
-                        fixed={true}
-                        panels={this.getPanels()}
-                        onTabChange={this.handleChangeTab}
-                        currentTabIndex={this.state.index}
-                    />
-                </div>
-            );
-        }
-
         return (
-            <div className="cr-order cr-order--extended">
-                <div className="cr-order--extended__buy">
+            <div className="cr-order">
+                <div className="cr-order-hidden">
                     <TabPanel
                         fixed={true}
-                        panels={[this.getPanel('buy')]}
-                        onTabChange={this.handleChangeTab}
-                        currentTabIndex={this.state.index}
+                        panels={[
+                            {content:(<div></div>), label: String(orderTypes[0])},
+                            {content:(<div></div>), label: String(orderTypes[1])},
+                            {content:(<div></div>), label: String(orderTypes[2]), disabled: true},
+                            {content:(<div></div>), label: String(orderTypes[3]), disabled: true}
+                        ]}
+                        onTabChange={this.handleChangeTabOrderType}
+                        currentTabIndex={this.state.indexOrderType}
                     />
                 </div>
-                <div className="cr-order--extended__sell">
-                    <TabPanel
-                        fixed={true}
-                        panels={[this.getPanel('sell')]}
-                        onTabChange={this.handleChangeTab}
-                        currentTabIndex={this.state.index}
-                    />
-                </div>
+                {
+                    width < splitBorder ? (
+                        <TabPanel
+                            fixed={true}
+                            panels={this.getPanels()}
+                            onTabChange={this.handleChangeTab}
+                            currentTabIndex={this.state.index}
+                        />
+                    ) : (
+                        <div className="cr-order cr-order--extended">
+                            <div className="cr-order--extended__buy">
+                                <TabPanel
+                                    fixed={true}
+                                    panels={[this.getPanel('buy')]}
+                                    onTabChange={this.handleChangeTab}
+                                    currentTabIndex={this.state.index}
+                                />
+                            </div>
+                            <div className="cr-order--extended__sell">
+                                <TabPanel
+                                    fixed={true}
+                                    panels={[this.getPanel('sell')]}
+                                    onTabChange={this.handleChangeTab}
+                                    currentTabIndex={this.state.index}
+                                />
+                            </div>
+                        </div>
+                    ) 
+                }
+                
             </div>
         );
+    }
+    private handleChangeTabOrderType = (index: number, label?: string) => {
+        this.setState({
+            indexOrderType: index,
+            orderSelected: String(defaultOrderTypes[index]),
+        });
     }
 
     public getPanel = (type: FormType) => {
@@ -210,6 +246,7 @@ export class Order extends React.Component<OrderComponentProps, State> {
             availableText,
             submitBuyButtonText,
             submitSellButtonText,
+            submitUserLogginText,
             labelFirst,
             labelSecond,
             orderTypes,
@@ -217,13 +254,14 @@ export class Order extends React.Component<OrderComponentProps, State> {
             asks,
             bids,
             listenInputPrice,
+            userLoggedIn
         } = this.props;
-        const { amountSell, amountBuy } = this.state;
+        const { amountSell, amountBuy, orderSelected } = this.state;
 
         const proposals = this.isTypeSell(type) ? bids : asks;
         const available = this.isTypeSell(type) ? availableBase : availableQuote;
         const priceMarket = this.isTypeSell(type) ? priceMarketSell : priceMarketBuy;
-        const submitButtonText = this.isTypeSell(type) ? submitSellButtonText : submitBuyButtonText;
+        const submitButtonText = !userLoggedIn ? submitUserLogginText : (this.isTypeSell(type) ? submitSellButtonText : submitBuyButtonText);
         const preLabel = this.isTypeSell(type) ? labelSecond : labelFirst;
         const label = this.isTypeSell(type) ? 'Sell' : 'Buy';
         const disabledData = this.isTypeSell(type) ? {} : { disabled };
@@ -255,6 +293,9 @@ export class Order extends React.Component<OrderComponentProps, State> {
                     listenInputPrice={listenInputPrice}
                     handleAmountChange={this.handleAmountChange}
                     handleChangeAmountByButton={this.handleChangeAmountByButton}
+
+                    orderSelected={orderSelected}
+                    userLoggedIn={userLoggedIn}
                 />
             ),
             label: preLabel || label,
