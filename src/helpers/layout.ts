@@ -48,7 +48,7 @@ const getLayouts = () => {
     const rowHeight = 14;
     const margin = 6;
 
-    const orderHeight = 21;
+    const orderHeight = 19.5;
     const minOrderBookHeight = 21;
     const minRecentTradesHeight = 10;
     const minTradingChartHeight = 21;

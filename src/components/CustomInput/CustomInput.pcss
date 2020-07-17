@@ -1,11 +1,16 @@
 .form-control{
     width: 100% !important;
     height: 42px !important;
+    border: none !important;
+    font-size: calc(var(--gap) * 1.75) !important;
+
+
 }
+
 .custom-input {
   label {
     background: var(--input-background-color);
-    font-size: calc(var(--gap) * 2);
+    font-size: calc(var(--gap) * 1.5);
     left: 5%;
     margin-top: -8px;
     padding: 0 calc(var(--gap) * 0.7);
@@ -36,5 +41,15 @@
     -webkit-box-shadow: 0 0 0 1000px var(--input-background-color) inset;
     -webkit-text-fill-color: var(--input-text-color);
     transition: background-color 5000s ease-in-out 0s;
+  }
+}
+@media (min-width: 769px){
+  .form-control{
+    font-size: calc(var(--gap) * 2.34) !important;
+  }
+  .custom-input{
+    label{
+      font-size: calc(var(--gap) * 2);
+    }
   }
 }

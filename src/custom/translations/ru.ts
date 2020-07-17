@@ -468,7 +468,8 @@ export const ru: LangType = {
     'page.header.signUp.confirmPassword': 'Подтвердить пароль',
     'page.header.signUp.confirmPassword.message.error': 'Пароли не совпадают',
     'page.header.signUp.referalCode': 'Промо-код',
-    'page.header.signUp.terms': 'Я согласен со всеми заявлениями с точки зрения обслуживания',
+    'page.header.signUp.terms': 'Я согласен со всеми заявлениями с ',
+    'page.header.signUp.terms.link': 'точки зрения обслуживания',
     'page.header.signUp.modal.header': 'ПРОВЕРЬТЕ СВОЙ АДРЕС ЭЛЕКТРОННОЙ ПОЧТЫ',
     'page.header.signUp.modal.body': 'Чтобы завершить регистрацию, найдите в своем' +
                                      ' почтовом ящике электронное письмо с дальнейшими инструкциями. ' +

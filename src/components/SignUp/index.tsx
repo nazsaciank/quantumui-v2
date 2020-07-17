@@ -4,6 +4,8 @@ import { Button, Form } from 'react-bootstrap';
 import { CustomInput, PasswordStrengthMeter } from '../';
 import { EMAIL_REGEX, PASSWORD_REGEX } from '../../helpers';
 
+import {Link} from 'react-router-dom';
+
 export interface SignUpFormProps {
     isLoading?: boolean;
     title?: string;
@@ -18,6 +20,7 @@ export interface SignUpFormProps {
     confirmPasswordLabel?: string;
     referalCodeLabel?: string;
     termsMessage?: string;
+    termsLink?: string;
     refId: string;
     password: string;
     email: string;
@@ -70,7 +73,6 @@ export class SignUpForm extends React.Component<SignUpFormProps> {
             emailLabel,
             confirmPasswordLabel,
             referalCodeLabel,
-            termsMessage,
             hasConfirmed,
             emailError,
             confirmationError,
@@ -164,7 +166,7 @@ export class SignUpForm extends React.Component<SignUpFormProps> {
                                 id="agreeWithTerms"
                                 checked={hasConfirmed}
                                 onChange={this.props.clickCheckBox}
-                                label={termsMessage ? termsMessage : 'I  agree all statements in terms of service'}
+                                label={this.renderTermsLink()}
                             />
                         </Form>
                         {this.props.renderCaptcha}
@@ -183,6 +185,18 @@ export class SignUpForm extends React.Component<SignUpFormProps> {
                     </div>
                 </div>
             </form>
+        );
+    }
+
+    private renderTermsLink(){
+        const {termsMessage,termsLink} = this.props;
+        return (
+          <span>
+              {termsMessage}
+              <Link to="/legal" target="_blank">
+                {termsLink}
+              </Link>
+          </span>          
         );
     }
 
