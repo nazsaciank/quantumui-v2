@@ -149,9 +149,9 @@ export class OrderForm extends React.PureComponent<OrderFormProps, OrderFormStat
                 priceMarket: next.priceMarket,
             });
         }
-        if (this.state.orderType !== next.orderSelected){
+        if(this.state.orderType !== next.orderSelected){
             this.setState({
-                orderType: this.props.orderSelected
+                orderType: next.orderSelected
             })
         }
     }
