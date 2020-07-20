@@ -33,7 +33,6 @@
 }
 
 #root {
-  overflow-x: hidden;
   position: relative;
 }
 
@@ -319,7 +318,7 @@ input:-webkit-autofill {
 @media screen and (min-width: 768px) and (max-width: 992px) {
   .cr-table {
     &__head tr th {
-      top: calc(var(--gap) * 4.8);
+      top: /*calc(var(--gap) * 4.8)*/ 0;
     }
   }
 }
@@ -327,7 +326,7 @@ input:-webkit-autofill {
 @media screen and (min-width: 360px) and (max-width: 767px) {
   .cr-table {
     &__head tr th {
-      top: calc(var(--gap) * 7.3);
+      top: /*calc(var(--gap) * 7.3)*/ 0;
     }
   }
 }
