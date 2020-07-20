@@ -1,12 +1,14 @@
 .cr-sign-up-form {
   border-radius: 3px;
   box-shadow: 0 10px 15px var(--shadow-color-level-2);
+  /*
   max-width: 424px;
   min-height: 620px;
+  */
   position: relative;
 
   &__options-group {
-    border-bottom: 2px solid var(--divider-color-level-2);
+    /*border-bottom: 2px solid var(--divider-color-level-2);*/
     height: 58px;
     width: 100%;
   }
@@ -39,12 +41,16 @@
   }
 
   &__form-content {
-    bottom: 23px;
     box-sizing: border-box;
-    left: 23px;
+    position: relative;
+    padding: 23px;
+    /*
     position: absolute;
     right: 23px;
     top: 90px;
+    left: 23px;
+    bottom: 23px;
+    */
 
     .custom-control {
       &-input {
@@ -129,10 +135,13 @@
 
   &__button-wrapper {
     background: transparent;
+    position: relative;
+    /*
     bottom: 0;
     left: 0;
     position: absolute;
     right: 0;
+    */
   }
 
   &__button-wrapper--empty {
@@ -185,10 +194,13 @@
   &__recaptcha {
     display: flex;
     justify-content: center;
+    position: relative;
+    /*
     left: 0;
     position: absolute;
     right: 0;
-    top: 10px;
+    top: 10px;*/
     z-index: 2;
+    margin-bottom: 16px;
   }
 }
