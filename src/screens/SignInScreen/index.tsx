@@ -107,6 +107,7 @@ class SignIn extends React.Component<Props, SignInState> {
                 passwordLabel={this.props.intl.formatMessage({ id: 'page.header.signIn.password' })}
                 receiveConfirmationLabel={this.props.intl.formatMessage({ id: 'page.header.signIn.receiveConfirmation' })}
                 forgotPasswordLabel={this.props.intl.formatMessage({ id: 'page.header.signIn.forgotPassword' })}
+                QuestionSignupLabel={this.props.intl.formatMessage({ id: 'page.header.signIn.QuestionSignupLabel' })}
                 isLoading={loading}
                 onForgotPassword={this.forgotPassword}
                 onSignUp={this.handleSignUp}

@@ -452,6 +452,7 @@ export const en = {
     'page.header.signIn.password.message.error': 'Password is invalid',
     'page.header.signIn.receiveConfirmation': 'Didn\'t receive your confirmation email?',
     'page.header.signIn.forgotPassword': 'Forgot your password?',
+    'page.header.signIn.QuestionSignupLabel': 'Don’t have an account?',
     'page.header.signIn.resetPassword.title': 'Reset password',
     'page.header.signIn.resetPassword.newPassword': 'New password',
     'page.header.signIn.resetPassword.repeatPassword': 'Repeat password',

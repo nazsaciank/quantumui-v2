@@ -454,6 +454,7 @@ export const ru: LangType = {
     'page.header.signIn.password.message.error': 'Неправильный пароль',
     'page.header.signIn.receiveConfirmation': 'Не получили подтверждение по электронной почте?',
     'page.header.signIn.forgotPassword': 'Забыли пароль?',
+    'page.header.signIn.QuestionSignupLabel': 'У вас нет аккаунта?',
     'page.header.signIn.resetPassword.title': 'Сброс пароля',
     'page.header.signIn.resetPassword.newPassword': 'Новый пароль',
     'page.header.signIn.resetPassword.repeatPassword': 'Повторите пароль',
