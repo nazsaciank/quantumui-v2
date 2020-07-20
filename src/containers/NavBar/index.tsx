@@ -78,7 +78,10 @@ class NavBarComponent extends React.Component<Props> {
             <Link to={path} key={index} className={`${isActive && 'route-selected'}`}>
                 <div className="pg-navbar-wrapper-nav-item">
                     <div className="pg-navbar-wrapper-nav-item-img-wrapper">
-                        <SidebarIcons name={img} className="pg-navbar-wrapper-nav-item-svg" />
+                        <SidebarIcons 
+                            className="pg-navbar-wrapper-nav-item-svg"
+                            name={img} 
+                        />
                     </div>
                     <p className="pg-navbar-wrapper-nav-item-text">
                         <FormattedMessage id={name} />

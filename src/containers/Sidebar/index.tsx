@@ -105,6 +105,9 @@ class SidebarContainer extends React.Component<Props, State> {
         const { currentMarket } = this.props;
 
         const [name, url, img] = values;
+        if(url === "/profile"){
+            return null;
+        }
         const handleLinkChange = () => this.props.toggleSidebar(false);
         const path = url.includes('/trading') && currentMarket ? `/trading/${currentMarket.id}` : url;
         const isActive = (url === '/trading/' && address.includes('/trading')) || address === url;
