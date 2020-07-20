@@ -38,14 +38,20 @@
       margin-top: calc(var(--gap) * 2);
 
       fieldset {
-        border: 1px solid var(--input-border-color);
+        /*border: 1px solid var(--input-border-color);*/
         border-radius: 4px;
         box-sizing: border-box;
         color: var(--input-text-color);
-        height: 49px;
-        margin-bottom: calc(var(--gap) * 3);
-        padding-left: calc(var(--gap) * 1.5);
-        width: 230px;
+        height: 42px;
+        margin-bottom: calc(var(--gap) * 2.5);
+        padding-right: calc(var(--gap) * 1.5);
+        width: 100%;
+
+        & input{
+          height: 42px;
+          background: var(--input-background-color);
+          font-size: calc(var(--gap) * 1.75) !important;
+        }
       }
 
       &-text {
@@ -57,13 +63,13 @@
       }
 
       &-content {
-        border-bottom: 1px solid var(--input-border-color);
+        /*border-bottom: 1px solid var(--input-border-color);*/
         display: inline-block;
         font-weight: normal;
         position: relative;
 
         &--focused {
-          border: 1px solid var(--input-border-color-active) !important;
+          /*border: 1px solid var(--input-border-color-active) !important;*/
 
           label,
           legend {
@@ -73,8 +79,9 @@
 
         legend {
           background-color: var(--input-background-color);
-          font-size: calc(var(--gap) * 2);
+          font-size: calc(var(--gap) * 1.5);
           padding: 0 calc(var(--gap) * 0.5);
+          margin-left: calc(var(--gap) * 1.42);
           position: absolute;
           top: -8px;
           width: auto;
@@ -86,8 +93,9 @@
           bottom: 0;
           color: var(--input-text-color);
           font-size: calc(var(--gap) * 2);
-          margin-top: 10px;
+          /*margin-top: 10px;*/
           width: 100%;
+          padding: 9px 16px !important;
 
           &::placeholder {
             color: var(--input-placeholder-color);
@@ -98,6 +106,7 @@
           height: 100%;
 
           label {
+            margin-left: calc(var(--gap) * 1.42);
             margin-top: -11px;
           }
         }
@@ -125,7 +134,7 @@
         &-documents {
           border: 1px dashed var(--secondary-contrast-cta-color);
           box-sizing: border-box;
-          height: 162px;
+          height: 142px;
           margin-bottom: calc(var(--gap) * 1.2);
           margin-top: calc(var(--gap) * 1.2);
 
@@ -182,30 +191,37 @@
 
       &-content-3 {
         position: relative;
-        width: calc(var(--big-gap) * 3.84);
+        width: 100%;
+        padding-right: calc(var(--gap) * 1.5);
 
         .pg-confirm__content-documents-col-row-content {
+          background: var(--input-background-color);
+
           &-label {
             background-color: var(--input-background-color);
             margin-left: calc(var(--gap) * 1.42);
             margin-top: calc(var(--gap) * (-1.33));
+            font-size: calc(var(--gap) * 1.5);
             padding: 0 var(--gap);
             position: absolute;
             z-index: 1;
+            
           }
         }
 
         .cr-dropdown {
           margin-bottom: 22px;
           margin-top: 7px;
+          border-radius: 4px;
 
           .dropdown-toggle {
-            height: calc(var(--gap) * 6.73);
+            display: flex;
+            align-items:center;
+            justify-content: space-between;
+            height: 42px;
+            background-color: var(--input-background-color) !important;
+            border: none;
 
-            &::after {
-              left: 205px;
-              top: 21px;
-            }
           }
         }
 
@@ -228,6 +244,12 @@
         width: calc(var(--gap) * 10) !important;
       }
     }
+  }
+}
+@media (min-width: 769px){
+  .pg-confirm__content-documents-col-row-content legend,
+  .pg-confirm__content-documents-col-row-content-3 .pg-confirm__content-documents-col-row-content-label{
+    font-size: calc(var(--gap) * 2);
   }
 }
 

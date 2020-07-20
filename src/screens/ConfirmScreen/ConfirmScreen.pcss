@@ -1,15 +1,15 @@
 .pg-wrapper {
   background: url(assets/images/background.svg);
   background-size: cover;
-  height: 100vh;
+  /*height: 100vh;*/
 
   .pg-logo {
     display: flex;
     justify-content: center;
-    padding-top: calc(var(--big-gap) * 2.5);
+    padding-top: calc(var(--big-gap) * .5);
 
     &__img {
-      height: calc(var(--big-gap) * 1.08);
+      height: calc(var(--big-gap) * 0.84);
     }
   }
 }
@@ -20,19 +20,12 @@
   justify-content: center;
   margin-top: calc(var(--big-gap) * 1);
 
-  .cr-dropdown .dropdown-toggle {
-    &::after {
-      left: 224px;
-      top: 26px;
-    }
-  }
-
   &__loader {
     align-items: center;
     display: flex;
     justify-content: center;
-    left: 0;
     position: absolute;
+    left: 0;
     right: 0;
     top: 50%;
   }
@@ -81,10 +74,10 @@
       color: var(--secondaty-contrast-cta-color);
       display: block;
       font-size: 14px;
-      left: -24px;
+      text-align: center;
       line-height: calc(var(--gap) * 2.5);
       position: absolute;
-      text-align: center;
+      left: -24px;
       top: 36px;
     }
   }

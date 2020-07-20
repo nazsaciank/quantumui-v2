@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { CloseIcon } from '../../assets/images/CloseIcon';
-import { LogoIcon } from '../../assets/images/LogoIcon';
+import { Logo } from '../../assets/images/logo';
 import { Phone } from '../../containers';
 import { Documents } from '../../containers/Confirm/Documents';
 import { Identity } from '../../containers/Confirm/Identity';
@@ -95,15 +95,16 @@ class ConfirmComponent extends React.Component<Props, ConfirmState> {
             'pg-confirm__progress-second': currentProfileLevel === 2 && !isProfileVerified,
             'pg-confirm__progress-third': currentProfileLevel === 2 && isProfileVerified,
         });
-
+        /*
         if (currentProfileLevel === 3) {
             this.handleRedirectToProfile();
         }
+        */
 
         return (
             <div className="pg-wrapper">
                 <div className="pg-logo">
-                    <LogoIcon className="pg-logo__img" />
+                    <Logo className="pg-logo__img" />
                 </div>
                 <div className="pg-confirm">
                     <div className="pg-confirm-box">
