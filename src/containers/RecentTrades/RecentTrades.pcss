@@ -43,7 +43,7 @@
   }
 
   .cr-table thead th {
-    top: calc(var(--gap) * 6);
+    top: 42px;
   }
 
   .cr-table td {
@@ -112,7 +112,13 @@
     }
   }
 }
-
+@media (min-width:769px){
+  .pg-recent-trades{
+      .cr-table thead th {
+        top: 36px;
+      }
+  }
+}
 @media (max-width: 1280px) {
   .pg-recent-trades {
     .cr-tab-panel {

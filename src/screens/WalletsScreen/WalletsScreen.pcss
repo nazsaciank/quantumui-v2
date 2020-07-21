@@ -1,6 +1,7 @@
 @import "../../containers/Wallets/EstimatedValue/EstimatedValue.pcss";
 
 .pg-wallet {
+  position: relative;
   height: max-content !important;
   align-items: flex-start !important;
   border-radius: var(--gap);
@@ -656,4 +657,19 @@
   .cr-wallet-item__single-balance{
     flex-direction: column;
   }
+  .pg-wallet{
+    .cr-withdraw{
+      padding: 0;
+    }
+    .btn-primary{
+      font-size: .9rem !important;
+    }
+    .cr-withdraw-column{
+      flex-direction: column;
+    }
+  }
+  .pg-history-elem__wallet{
+    padding: calc(var(--gap) * 1.5)
+  }
+  
 }
