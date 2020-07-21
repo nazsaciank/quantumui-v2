@@ -41,7 +41,9 @@ class AppLayout extends React.Component<Props, {}, {}> {
     public componentDidMount() {
         ReactGA.pageview(history.location.pathname);
     }
-
+    private iframeInside(){
+        return window.top !== window.self;
+    }
     public render() {
         const { lang } = this.props;
 
@@ -50,12 +52,12 @@ class AppLayout extends React.Component<Props, {}, {}> {
                 <Router history={history}>
                     <ErrorWrapper>
                         <React.Suspense fallback={null}>
-                            <HeaderContainer/>
+                            {this.iframeInside() ? null : (<HeaderContainer/>)}
                             <SidebarContainer/>
                             <CustomizationContainer/>
                             <AlertsContainer/>
                             <LayoutContainer/>
-                            <FooterContainer/>
+                            {this.iframeInside() ? null : (<FooterContainer/>)}
                         </React.Suspense>
                     </ErrorWrapper>
                 </Router>

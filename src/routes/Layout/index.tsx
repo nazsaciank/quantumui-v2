@@ -44,6 +44,7 @@ import {
     TradingScreen,
     VerificationScreen,
     WalletsScreen,
+    allMarketsScreen
 } from '../../screens';
 
 interface ReduxProps {
@@ -189,6 +190,7 @@ class LayoutComponent extends React.Component<LayoutProps, LayoutState> {
                     <PublicRoute loading={userLoading} isLogged={isLoggedIn} path="/forgot_password" component={ForgotPasswordScreen} />
                     <PublicRoute loading={userLoading} isLogged={isLoggedIn} path="/accounts/password_reset" component={ChangeForgottenPasswordScreen} />
                     <PublicRoute loading={userLoading} isLogged={isLoggedIn} path="/email-verification" component={EmailVerificationScreen} />
+                    <PublicRoute loading={userLoading} isLogged={isLoggedIn} path="/allmarkets" component={allMarketsScreen}/>
                     <Route exact={true} path="/trading/:market?" component={TradingScreen} />
                     {showLanding() && <Route exact={true} path="/" component={LandingScreen} />}
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/orders" component={OrdersTabScreen} />
