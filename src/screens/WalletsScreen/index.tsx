@@ -344,24 +344,26 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
             return (
                 <React.Fragment>
                     <CurrencyInfo wallet={wallets[selectedWalletIndex]}/>
-                    {currencyItem && currencyItem.deposit_enabled === false ? (
-                        <Blur
-                            className={blurCryptoClassName}
-                            text={this.translate('page.body.wallets.tabs.deposit.disabled.message')}
+                    <div className="pg-deposit-crypto-container">
+                        {currencyItem && currencyItem.deposit_enabled === false ? (
+                            <Blur
+                                className={blurCryptoClassName}
+                                text={this.translate('page.body.wallets.tabs.deposit.disabled.message')}
+                            />
+                        ) : null}
+                        <DepositCrypto
+                            data={walletAddress}
+                            handleOnCopy={this.handleOnCopy}
+                            error={error}
+                            text={text}
+                            disabled={walletAddress === ''}
+                            copiableTextFieldText={this.translate('page.body.wallets.tabs.deposit.ccy.message.address')}
+                            copyButtonText={this.translate('page.body.wallets.tabs.deposit.ccy.message.button')}
+                            handleGenerateAddress={this.handleGenerateAddress}
+                            buttonLabel={buttonLabel}
+                            isAccountActivated={isAccountActivated}
                         />
-                    ) : null}
-                    <DepositCrypto
-                        data={walletAddress}
-                        handleOnCopy={this.handleOnCopy}
-                        error={error}
-                        text={text}
-                        disabled={walletAddress === ''}
-                        copiableTextFieldText={this.translate('page.body.wallets.tabs.deposit.ccy.message.address')}
-                        copyButtonText={this.translate('page.body.wallets.tabs.deposit.ccy.message.button')}
-                        handleGenerateAddress={this.handleGenerateAddress}
-                        buttonLabel={buttonLabel}
-                        isAccountActivated={isAccountActivated}
-                    />
+                    </div>
                     {currency && <WalletHistory label="deposit" type="deposits" currency={currency} />}
                 </React.Fragment>
             );
@@ -369,13 +371,15 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
             return (
                 <React.Fragment>
                     <CurrencyInfo wallet={wallets[selectedWalletIndex]}/>
-                    {currencyItem && currencyItem.deposit_enabled === false ? (
-                        <Blur
-                            className="pg-blur-deposit-fiat"
-                            text={this.translate('page.body.wallets.tabs.deposit.disabled.message')}
-                        />
-                    ) : null}
-                    <DepositFiat title={this.title} description={this.description} uid={user ? user.uid : ''}/>
+                    <div className="pg-depositfiat-container">
+                        {currencyItem && currencyItem.deposit_enabled === false ? (
+                            <Blur
+                                className="pg-blur-deposit-fiat"
+                                text={this.translate('page.body.wallets.tabs.deposit.disabled.message')}
+                            />
+                        ) : null}
+                        <DepositFiat title={this.title} description={this.description} uid={user ? user.uid : ''}/>
+                    </div>
                     {currency && <WalletHistory label="deposit" type="deposits" currency={currency} />}
                 </React.Fragment>
             );
@@ -392,13 +396,15 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
             <React.Fragment>
                 <CurrencyInfo wallet={wallets[selectedWalletIndex]}/>
                 {walletsError && <p className="pg-wallet__error">{walletsError.message}</p>}
-                {currencyItem && currencyItem.withdrawal_enabled === false ? (
-                    <Blur
-                        className="pg-blur-withdraw"
-                        text={this.translate('page.body.wallets.tabs.withdraw.disabled.message')}
-                    />
-                ) : null}
-                {this.renderWithdrawContent()}
+                <div className="pg-withdraw-container">
+                    {currencyItem && currencyItem.withdrawal_enabled === false ? (
+                        <Blur
+                            className="pg-blur-withdraw"
+                            text={this.translate('page.body.wallets.tabs.withdraw.disabled.message')}
+                        />
+                    ) : null}
+                    {this.renderWithdrawContent()}
+                </div>
                 {user.otp && currency && <WalletHistory label="withdraw" type="withdraws" currency={currency} />}
             </React.Fragment>
         );
