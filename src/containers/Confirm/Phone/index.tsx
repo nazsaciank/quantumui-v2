@@ -16,11 +16,15 @@ import {
 } from '../../../modules/user/kyc/phone';
 import { changeUserLevel } from '../../../modules/user/profile';
 
+import { PhoneCodeDropdown } from '../../../components/CodePhoneDropdown';
+
 interface ReduxProps {
     verifyPhoneSuccess?: string;
 }
 
 interface PhoneState {
+    changePhoneCode: boolean;
+    phoneCode: string;
     phoneNumber: string;
     phoneNumberFocused: boolean;
     confirmationCode: string;
@@ -42,11 +46,13 @@ class PhoneComponent extends React.Component<Props, PhoneState> {
         super(props);
 
         this.state = {
+            phoneCode: '',
             phoneNumber: '',
             phoneNumberFocused: false,
             confirmationCode: '',
             confirmationCodeFocused: false,
             resendCode: false,
+            changePhoneCode: false,
         };
     }
 
@@ -82,13 +88,16 @@ class PhoneComponent extends React.Component<Props, PhoneState> {
                     </div>
                     <fieldset className={phoneNumberFocusedClass}>
                         <InputGroup>
+                            <PhoneCodeDropdown
+                                onSelect={this.handlePhoneCode}
+                                placeholder={this.translate('page.body.kyc.phone.selectphoneCode')} 
+                            />
                             <CustomInput
                                 label={phoneNumber ? this.translate('page.body.kyc.phone.phoneNumber') : ''}
                                 defaultLabel={phoneNumber ? this.translate('page.body.kyc.phone.phoneNumber') : ''}
                                 placeholder={this.translate('page.body.kyc.phone.phoneNumber')}
                                 type="string"
                                 inputValue={phoneNumber}
-                                handleClick={this.addPlusSignToPhoneNumber}
                                 handleChangeInput={this.handleChangePhoneNumber}
                                 onKeyPress={this.handleSendEnterPress}
                                 autoFocus={true}
@@ -112,7 +121,7 @@ class PhoneComponent extends React.Component<Props, PhoneState> {
                     <div className="pg-confirm__content-phone-col-text">
                         2. {this.translate('page.body.kyc.phone.enterCode')}
                     </div>
-                    <fieldset className={confirmationCodeFocusedClass}>
+                    <fieldset className={confirmationCodeFocusedClass + " pdd-input"}>
                         <CustomInput
                             type="string"
                             label={confirmationCode ? this.translate('page.body.kyc.phone.code') : ''}
@@ -140,12 +149,23 @@ class PhoneComponent extends React.Component<Props, PhoneState> {
             </div>
         );
     }
+    
+    private handlePhoneCode = (code:string) => {
+        this.setState({
+            phoneCode: code
+        });
+        if(!this.state.changePhoneCode){
+            this.setState({
+                changePhoneCode: true
+            })
+        }
+
+    }
 
     private handleFieldFocus = (field: string) => {
         return() => {
             switch (field) {
                 case 'phoneNumber':
-                    this.addPlusSignToPhoneNumber();
                     this.setState(prev => ({
                         phoneNumberFocused: !prev.phoneNumberFocused,
                     }));
@@ -177,18 +197,10 @@ class PhoneComponent extends React.Component<Props, PhoneState> {
 
     private confirmPhone = () => {
         const requestProps = {
-            phone_number: String(this.state.phoneNumber),
+            phone_number: String(`${this.state.phoneCode}${this.state.phoneNumber}`),
             verification_code: String(this.state.confirmationCode),
         };
         this.props.verifyPhone(requestProps);
-    };
-
-    private addPlusSignToPhoneNumber = () => {
-        if (this.state.phoneNumber.length === 0) {
-            this.setState({
-                phoneNumber: '+',
-            });
-        }
     };
 
     private handleChangePhoneNumber = (value: string) => {
@@ -210,7 +222,7 @@ class PhoneComponent extends React.Component<Props, PhoneState> {
 
     private inputPhoneNumber = (value: string) => {
         const convertedText = value.trim();
-        const condition = new RegExp('^\\+\\d*?$');
+        const condition = new RegExp('^\\d*?$');
 
         return condition.test(convertedText);
     };
@@ -224,7 +236,7 @@ class PhoneComponent extends React.Component<Props, PhoneState> {
 
     private handleSendCode = () => {
         const requestProps = {
-            phone_number: String(this.state.phoneNumber),
+            phone_number: String(`${this.state.phoneCode}${this.state.phoneNumber}`),
         };
         if (!this.state.resendCode) {
             this.props.sendCode(requestProps);

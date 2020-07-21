@@ -408,6 +408,7 @@ export const en = {
     'page.body.kyc.phone.head': 'Verify Phone',
     'page.body.kyc.phone.enterPhone': 'Enter phone number',
     'page.body.kyc.phone.phoneNumber': 'Phone Number',
+    'page.body.kyc.phone.selectphoneCode': 'Select phone code',
     'page.body.kyc.phone.enterCode': 'Enter confirmation code',
     'page.body.kyc.phone.code': 'SMS Code',
     'page.body.kyc.phone.send': 'SEND CODE',

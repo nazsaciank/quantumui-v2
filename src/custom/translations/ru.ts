@@ -409,6 +409,7 @@ export const ru: LangType = {
     'page.body.kyc.phone.head': 'Подтверждение телефона',
     'page.body.kyc.phone.enterPhone': 'Введите свой номер телефона',
     'page.body.kyc.phone.phoneNumber': 'Номер Телефона',
+    'page.body.kyc.phone.selectphoneCode': 'выберите код телефона',
     'page.body.kyc.phone.enterCode': 'Введите код, который Вы получили',
     'page.body.kyc.phone.code': 'СМС',
     'page.body.kyc.phone.send': 'ОТПРАВИТЬ КОД',
