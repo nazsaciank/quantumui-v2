@@ -2,15 +2,15 @@
   width: 100%;
 
   fieldset {
-    background: inherit;
-    border: 1px solid var(--input-border-color);
+    background: var(--input-background-color);
+    /*border: 1px solid var(--input-border-color);*/
     border-radius: calc(var(--gap) * 0.66);
     flex-grow: 1;
     overflow: hidden;
     padding: 0;
 
     &:focus-within {
-      border: 1px solid var(--input-border-color-active) !important;
+      /*border: 1px solid var(--input-border-color-active) !important;*/
       border-radius: calc(var(--gap) * 0.66);
       overflow: hidden;
 
@@ -25,17 +25,19 @@
       padding: calc(var(--gap) * 0.2);
       position: absolute;
       width: max-content;
+      z-index: 4;
     }
 
     .pg-copyable-text-field {
       &__input {
         border: none;
-        padding: var(--gap) calc(var(--gap) * 0.83) calc(var(--gap) * 0.83) var(--gap) !important;
+        /*padding: var(--gap) calc(var(--gap) * 0.83) calc(var(--gap) * 0.83) var(--gap) !important;*/
 
         .input-group {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
+          align-items: center;
 
           .custom-input {
             width: 70%;
@@ -49,8 +51,19 @@
 
         .btn-primary {
           border-radius: 0.3rem;
+          margin-right: 4px;
         }
       }
     }
   }
+}
+@media (max-width: 768px){
+    .pg-copyable-text-field{
+      &__input{
+        .btn-primary{
+          font-size: 1em;
+          padding: .375rem .75rem;
+        }
+      } 
+    }
 }

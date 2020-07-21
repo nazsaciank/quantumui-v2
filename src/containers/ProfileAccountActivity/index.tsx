@@ -37,7 +37,7 @@ interface DispatchProps {
     getUserActivity: typeof getUserActivity;
 }
 
-const paginationLimit = 25;
+const paginationLimit = 5;
 
 type Props = ReduxProps & DispatchProps & InjectedIntlProps;
 
