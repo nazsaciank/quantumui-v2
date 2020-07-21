@@ -41,7 +41,7 @@
     }
 
     .custom-input {
-      width: 75%;
+      width: 100%;
     }
 
     &-title {
@@ -52,7 +52,7 @@
     }
 
     &-area {
-      border: 1px solid var(--input-border-color);
+      /*border: 1px solid var(--input-border-color);*/
       margin-top: calc(var(--gap) * -1.1);
 
       .input-group {
@@ -68,6 +68,11 @@
             border-color: var(--input-border-color-active);
           }
         }
+      }
+      .input-group-append>.btn{
+        margin-top: .5em;
+        border-radius: 4px;
+        font-size: 1rem;
       }
     }
 
@@ -104,7 +109,7 @@
     }
 
     .cr-deposit-crypto__copyable-area {
-      height: calc(var(--gap) * 5);
+      height: max-content
     }
   }
 }

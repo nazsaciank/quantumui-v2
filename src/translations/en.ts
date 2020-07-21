@@ -156,7 +156,7 @@ export const en = {
     'page.body.wallets.tabs.deposit.disabled.message': 'Deposit was disabled by administration',
     'page.body.wallets.tabs.deposit.ccy.message.submit': 'Submit a deposit using the following address or QR code. Your deposit will be reflected in your account after {confirmations} confirmations',
     'page.body.wallets.tabs.deposit.ccy.message.address': 'Deposit Address',
-    'page.body.wallets.tabs.deposit.ccy.message.button': 'COPY',
+    'page.body.wallets.tabs.deposit.ccy.message.button': 'COPY ADDRESS',
     'page.body.wallets.tabs.deposit.ccy.message.success': 'Address copied',
     'page.body.wallets.tabs.deposit.ccy.message.error': 'Generating deposit address',
     'page.body.wallets.tabs.deposit.ccy.button.generate': 'Generate',

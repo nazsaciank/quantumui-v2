@@ -1,6 +1,7 @@
 @import "../../containers/Wallets/EstimatedValue/EstimatedValue.pcss";
 
 .pg-wallet {
+  height: max-content !important;
   align-items: flex-start !important;
   border-radius: var(--gap);
   display: flex;
@@ -159,7 +160,7 @@
           border-bottom-left-radius: calc(var(--gap) * 0.66);
           border-top-left-radius: calc(var(--gap) * 0.66);
           content: '';
-          height: calc(var(--gap) * 9);
+          height: calc(var(--gap) * 8);
           width: 4px;
         }
       }
@@ -314,7 +315,7 @@
       &__copyable {
         fieldset {
           &:focus-within {
-            border-color: var(--input-border-color-active);
+            /*border-color: var(--input-border-color-active);*/
 
             legend {
               color: var(--input-legend-color-active);
@@ -323,7 +324,7 @@
         }
 
         .cr-deposit-crypto__copyable-area {
-          border: 1px solid var(--input-border-color);
+          /*border: 1px solid var(--input-border-color);*/
 
           .custom-input {
             width: 85%;
@@ -405,7 +406,7 @@
     color: var(--primary-text-color);
     cursor: pointer;
     font-size: calc(var(--gap) * 2.66);
-    height: calc(var(--gap) * 9);
+    height: calc(var(--gap) * 8.1);
 
     & > * {
       background: transparent;
@@ -699,5 +700,10 @@
     .cr-wallet-item__balance-amount {
       font-size: calc(var(--gap) * 2);
     }
+  }
+}
+@media screen and (max-width: 755px){
+  .cr-wallet-item__single-balance{
+    flex-direction: column;
   }
 }
