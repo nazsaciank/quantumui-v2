@@ -179,7 +179,7 @@ export const ru: LangType = {
     'page.body.wallets.tabs.withdraw.content.fee': 'Комиссия',
     'page.body.wallets.tabs.withdraw.content.total': 'Сумма вывода',
     'page.body.wallets.tabs.withdraw.content.button': 'ВЫВЕСТИ',
-
+    'page.body.wallets.tabs.withdraw.content.button.withdrawall': 'Снять все',
     'page.body.wallets.tabs.withdraw.disabled.message': 'Вывод средств был отключен администрацией',
 
     'page.body.wallets.tabs.withdraw.modal.confirmation': 'Подтверждение',

@@ -10,6 +10,8 @@ import { Decimal } from '../../components/Decimal';
 import { cleanPositiveFloatInput, precisionRegExp } from '../../helpers';
 import { Beneficiary } from '../../modules';
 
+import { WalletItemProps } from '../../components/WalletItem';
+
 export interface WithdrawProps {
     currency: string;
     fee: number;
@@ -23,7 +25,10 @@ export interface WithdrawProps {
     withdrawFeeLabel?: string;
     withdrawTotalLabel?: string;
     withdrawButtonLabel?: string;
+    withdrawAllButtonLabel?: string;
     withdrawDone: boolean;
+
+    wallet: WalletItemProps;
 }
 
 const defaultBeneficiary: Beneficiary = {
@@ -84,6 +89,7 @@ export class Withdraw extends React.Component<WithdrawProps, WithdrawState> {
             withdrawFeeLabel,
             withdrawTotalLabel,
             withdrawButtonLabel,
+            withdrawAllButtonLabel,
         } = this.props;
 
         const cx = classnames('cr-withdraw', className);
@@ -117,6 +123,13 @@ export class Withdraw extends React.Component<WithdrawProps, WithdrawState> {
                             classNameInput="cr-withdraw__input"
                             handleChangeInput={this.handleChangeInputAmount}
                         />
+                        <Button
+                            variant="primary"
+                            size="lg"
+                            onClick={this.handleWithdrawAll}
+                        >
+                            {withdrawAllButtonLabel ? withdrawAllButtonLabel : 'Withdraw All'}
+                        </Button>
                     </div>
                     <div className={lastDividerClassName} />
                     {twoFactorAuthRequired && this.renderOtpCodeInput()}
@@ -147,6 +160,14 @@ export class Withdraw extends React.Component<WithdrawProps, WithdrawState> {
                 </div>
             </div>
         );
+    }
+    
+    private handleWithdrawAll = () => {
+        const { wallet } = this.props
+        this.setState({
+            amount: String(wallet.balance)
+        })
+        this.handleChangeInputAmount(String(wallet.balance))
     }
 
     private handleCheckButtonDisabled = (total: string, beneficiary: Beneficiary, otpCode: string) => {

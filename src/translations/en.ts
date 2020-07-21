@@ -179,6 +179,7 @@ export const en = {
     'page.body.wallets.tabs.withdraw.content.fee': 'Fee',
     'page.body.wallets.tabs.withdraw.content.total': 'Total Withdrawal Amount',
     'page.body.wallets.tabs.withdraw.content.button': 'WITHDRAW',
+    'page.body.wallets.tabs.withdraw.content.button.withdrawall': 'Withdraw All',
     'page.body.wallets.tabs.withdraw.disabled.message': 'Withdraw was disabled by administration',
 
     'page.body.wallets.tabs.withdraw.modal.confirmation': 'Confirmation',
