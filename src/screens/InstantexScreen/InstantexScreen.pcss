@@ -1,0 +1,22 @@
+.pg-instantex-screen{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    height: calc(100vh - 90px);
+    min-height: max-content;
+    
+
+    &-right,
+    &-left{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+@media (max-width: 769px){
+    .pg-instantex-screen{
+        flex-direction: column;
+    }
+}

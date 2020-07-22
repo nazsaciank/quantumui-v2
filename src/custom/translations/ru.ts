@@ -38,6 +38,9 @@ export const ru: LangType = {
     'page.body.trade.header.newOrder.content.total': 'Всего',
     'page.body.trade.header.newOrder.content.available': 'Доступно',
 
+    'page.body.trade.header.newOrder.content.instantex.market-price': 'Рыночная цена',
+    'page.body.trade.header.newOrder.content.instantex.fixed-rate': 'фиксированная ставка',
+
     'error.order.create.minAmount': 'Кол-во слишком мало. Минимальное кол-во: {amount} {currency}',
     'error.order.create.minPrice': 'Цена слишком мала. Минимальная цена: {price} {currency}',
     'error.order.create.maxPrice': 'Цена слишком велика. Максимальная цена: {price} {currency}',

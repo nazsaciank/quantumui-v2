@@ -14,3 +14,4 @@ export * from './TradingScreen';
 export * from './VerificationScreen';
 export * from './WalletsScreen';
 export * from './allMarketsScreen';
+export * from './InstantexScreen';

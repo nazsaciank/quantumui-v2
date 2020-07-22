@@ -1,0 +1,123 @@
+.cr-instantex-form{
+    padding-bottom: calc(var(--gap) * 2.67);
+    .cr-tab-panel{
+        width: 100%;
+
+
+        &__navigation-container-navigation,
+        .cr-tab{
+            width: 100%;
+        }
+    }
+    .cr-order-item{
+        padding: 0 calc(var(--gap) * 2);
+        margin-bottom: calc(var(--gap) * 0.9);
+
+        .cr-order-input{
+
+            .form-control{
+                padding: 8px 16px;
+                border-bottom-left-radius: calc(var(--gap) * 0.761);
+                border-top-left-radius: calc(var(--gap) * 0.761);
+            }
+
+            &__fieldset__label{
+                width: max-content;
+                position: absolute;
+                top: -10px;
+                left: 16px;
+                background: var(--input-background-color);
+                color: var(--order-input-input-color);
+                padding: 0 var(--gap);
+                margin-left: calc(var(--gap) * -0.6);
+                font-size: calc(var(--gap) * 2);
+            }
+            &__fieldset__input{
+                height: 42px;
+                padding: 11px 16px;
+                background: var(--input-background-color);
+                border-top-left-radius: calc(var(--gap) * 0.571);
+                border-bottom-left-radius: calc(var(--gap) * 0.571);
+
+                &__price{
+                    font-size: calc(var(--gap) * 2.34);
+                    color: var(--order-input-input-color);
+                }
+            }
+            &__crypto-icon{
+                border-bottom-right-radius: calc(var(--gap) * 0.761);
+                border-top-right-radius: calc(var(--gap) * 0.761);
+
+
+                .dropdown{
+                    width: 100%;
+                    .dropdown-toggle{
+                        width: 100%;
+                        height: 42px;
+                        background: var(--input-background-color);
+                        border: none;
+                        box-shadow: none;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+                    .dropdown-menu{
+                        background: var(--dropdown-background-color);
+                    }
+                    .dropdown-item{
+                        color: var(--dropdown-text-color);
+                        padding-bottom: 10px;
+                        padding-top: 10px;
+
+                        &:hover{
+                            background: var(--dropdown-background-color-hover);
+                        }
+                    }               
+
+                }
+            }
+        }
+
+        &__percentage-buttons{
+            margin-bottom: calc(var(--gap) * 1.34);
+            margin-top: calc(var(--gap) * 1);
+
+            .cr-percentage-button{
+                border-radius: calc(var(--gap) * 0.67);
+                font-size: calc(var(--gap) * 2);
+                background: var(--orders-button-percentage-normal);
+                color: var(--orders-button-percentage-text);
+
+                &:hover{
+                    background: var(--orders-button-percentage-hover);
+                }
+            }
+
+        }
+
+        &__total__label,
+        &__total__content{
+            font-size: calc(var(--gap) * 2.34);
+        }
+        &__total__content{
+            color: var(--orders-text-primary-color);
+        }
+
+        &__available_label{
+            font-size: calc(var(--gap) * 2);
+        }
+    }
+}
+@media (max-width: 769px){
+    .cr-instantex-form{
+
+        .cr-order-input{
+
+            &__fieldset__input{
+                &__price{
+                    font-size: calc(var(--gap) * 1.75) !important;
+                }
+            }
+        }
+    }
+}

@@ -41,6 +41,9 @@ export const en = {
     'page.body.trade.header.newOrder.content.total': 'Total',
     'page.body.trade.header.newOrder.content.available': 'Available',
 
+    'page.body.trade.header.newOrder.content.instantex.market-price': 'Market Price',
+    'page.body.trade.header.newOrder.content.instantex.fixed-rate': 'Fixed Rate',
+
     'error.order.create.minAmount': 'Amount is too low. Minimum amount is {amount} {currency}',
     'error.order.create.minPrice': 'Price is too low. Minimum price is {price} {currency}',
     'error.order.create.maxPrice': 'Price is too high. Maximum price is {price} {currency}',
