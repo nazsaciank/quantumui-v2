@@ -129,10 +129,14 @@
 
         .cr-table {
           thead {
-            position: relative;
-            top: 0px;
+            position: fixed;
+            top: 32px;
             z-index: 2222;
             width: 100%;
+
+            tr{
+              display: flex ;
+            }
           }
 
           &__body {
@@ -159,15 +163,13 @@
               top: 36px;
             }
 
-            /*
             tbody::before {
               content: '';
               display: block;
-              height: calc(var(--gap) * 7);
+              height: 36px;
             }
-            */
             &-container {
-              /*margin-top: auto;*/
+              margin-top: auto;
               width: 100%;
             }
           }
@@ -257,6 +259,16 @@
 }
 @media (max-width: 458px){
   .cr-table{
+    thead{
+      position: relative !important;
+
+      tr{
+        display: table-row !important;
+      }
+    }
+    tbody::before{
+      display: none !important;
+    }
     tr{
         font-size: .8em;
         max-height: 23px;
