@@ -53,7 +53,7 @@ class ConfirmComponent extends React.Component<Props, ConfirmState> {
     }
 
     public componentDidMount() {
-        const { labels, userData } = this.props;
+        const { /*labels,*/ userData } = this.props;
 
         setDocumentTitle('Confirm');
         this.props.labelFetch();
@@ -61,7 +61,7 @@ class ConfirmComponent extends React.Component<Props, ConfirmState> {
             level: userData.level,
         });
 
-        this.handleCheckPendingLabel(labels);
+        //this.handleCheckPendingLabel(labels);
     }
 
     public componentWillReceiveProps(next: Props) {
@@ -74,7 +74,7 @@ class ConfirmComponent extends React.Component<Props, ConfirmState> {
         }
 
         if (next.labels && JSON.stringify(next.labels) !== JSON.stringify(labels)) {
-            this.handleCheckPendingLabel(next.labels);
+            //this.handleCheckPendingLabel(next.labels);
         }
     }
 
@@ -151,11 +151,12 @@ class ConfirmComponent extends React.Component<Props, ConfirmState> {
             default: return 'Something went wrong';
         }
     };
-
+    /*
     private handleRedirectToProfile = () => {
         this.props.history.push('/profile');
     };
-
+    */
+    /*
     private handleCheckPendingLabel = (labels: Label[]) => {
         const isProfileSubmitted = labels.length && labels.find(l => l.key === 'profile' && l.value === 'submitted' && l.scope === 'private');
         const isDocumentPending = labels.length && labels.find(l => l.key === 'document' && l.value === 'pending' && l.scope === 'private');
@@ -164,6 +165,7 @@ class ConfirmComponent extends React.Component<Props, ConfirmState> {
             this.handleRedirectToProfile();
         }
     };
+    */
 }
 
 const mapStateToProps = (state: RootState): ReduxProps => ({
