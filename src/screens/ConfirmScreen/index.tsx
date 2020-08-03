@@ -93,7 +93,7 @@ class ConfirmComponent extends React.Component<Props, ConfirmState> {
         const cx = classnames('pg-confirm__progress-items', {
             'pg-confirm__progress-first': currentProfileLevel === 1,
             'pg-confirm__progress-second': currentProfileLevel === 2 && !isProfileVerified,
-            'pg-confirm__progress-third': currentProfileLevel === 2 && isProfileVerified,
+            'pg-confirm__progress-third': currentProfileLevel === 3 && isProfileVerified,
         });
         /*
         if (currentProfileLevel === 3) {
