@@ -3,6 +3,7 @@ import { call, put } from 'redux-saga/effects';
 import { API, RequestOptions } from '../../../../../api';
 import { getCsrfToken } from '../../../../../helpers';
 import { alertPush } from '../../../../index';
+import { changeUserLevel } from '../../../profile';
 import { editIdentityData, editIdentityError, EditIdentityFetch } from '../actions';
 
 const sessionsConfig = (csrfToken?: string): RequestOptions => {
@@ -18,6 +19,7 @@ export function* editIdentitySaga(action: EditIdentityFetch) {
         const defaultMessage = 'success.identity.accepted';
         const { message = defaultMessage } = response;
         yield put(editIdentityData({ message }));
+        yield put(changeUserLevel({ level:3 }));
         yield put(alertPush({message: [defaultMessage], type: 'success'}));
     } catch (error) {
         yield put(editIdentityError(error));
