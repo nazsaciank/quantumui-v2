@@ -151,15 +151,17 @@ class ConfirmComponent extends React.Component<Props, ConfirmState> {
             default: return 'Something went wrong';
         }
     };
+    /*
     private handleRedirectToProfile = () => {
         this.props.history.push('/profile');
     };
+    */
     private handleCheckPendingLabel = (labels: Label[]) => {
         const isProfileSubmitted = labels.length && labels.find(l => l.key === 'profile' && l.value === 'submitted' && l.scope === 'private');
         const isDocumentPending = labels.length && labels.find(l => l.key === 'document' && l.value === 'pending' && l.scope === 'private');
 
         if (isProfileSubmitted || isDocumentPending) {
-            this.handleRedirectToProfile();
+            //this.handleRedirectToProfile();
         }
     };
 }
